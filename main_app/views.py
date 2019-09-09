@@ -9,10 +9,10 @@ class Game:  # Note that parens are optional if not inheriting from another clas
     self.description = description
     self.rating = rating
 
-cats = [
-  Cat('Apex Legends', 'shooter', 'battle-royale', 5),
-  Cat('Halo 3', 'shooter', 'first-person shooter', 5),
-  Cat('Call of Duty', 'shooter', 'first-person shooter', 2)
+games = [
+  Game('Apex Legends', 'shooter', 'battle-royale', 5),
+  Game('Halo 3', 'shooter', 'first-person shooter', 5),
+  Game('Call of Duty', 'shooter', 'first-person shooter', 2)
 ]
 
 def home(request):
