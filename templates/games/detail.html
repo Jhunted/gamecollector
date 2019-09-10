@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Game Details</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ game.name }}</span>
+    <p>Genre: {{ game.genre }}</p>
+    <p>Description: {{ game.description }}</p>
+    {% if game.rating > 0 %}
+      <p>Rating: {{ game.rating }}</p>
+    {% else %}
+      <p>Rating: Noob</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
