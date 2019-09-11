@@ -3,17 +3,56 @@
 
 <h1>Game Details</h1>
 
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">{{ game.name }}</span>
-    <p>Genre: {{ game.genre }}</p>
-    <p>Description: {{ game.description }}</p>
-    {% if game.rating > 0 %}
-      <p>Rating: {{ game.rating }}</p>
-    {% else %}
-      <p>Rating: Noob</p>
-    {% endif %}
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ game.name }}</span>
+        <p>Genre: {{ game.genre }}</p>
+        <p>Description: {{ game.description }}</p>
+        {% if game.rating > 0 %}
+          <p>Rating: {{ game.rating }}</p>
+        {% else %}
+          <p>Rating: n/a</p>
+        {% endif %}
+      </div>
+      <div class="card-action">
+        <a href="{% url 'games_update' game.id %}">Edit</a>
+        <a href="{% url 'games_delete' game.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+  <div class="col s6">
+      <form action="{% url 'add_session' game.id %}" method="post">
+          {% csrf_token %}
+          {{ session_form.as_p }}
+          <input type="submit" class="btn" value="Add Feeding">
+      </form>
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Session</th></tr>
+      </thead>
+      <tbody>
+        {% for session in game.session_set.all %}
+          <tr>
+            <td>{{session.date}}</td>
+            <td>{{session.get_playday_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
+<script>
+  var dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
 
+  var selectEl = document.getElementById('id_playday');
+  M.FormSelect.init(selectEl);
+</script>
 {% endblock %}
