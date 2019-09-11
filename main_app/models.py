@@ -18,8 +18,11 @@ class Game(models.Model):
     description = models.TextField(max_length=250)
     rating = models.IntegerField()
 
-  def get_absolute_url(self):
-    return reverse('detail', kwargs={'game_id': self.id})
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'game_id': self.id})
 
 class Session(models.Model):
   date = models.DateField('session date')
