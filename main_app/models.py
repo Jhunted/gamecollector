@@ -34,7 +34,7 @@ class Session(models.Model):
   game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
   def __str__(self):
-    return "{self.get_session_display()} on {self.date}"
+    return "{self.get_playday_display()} on {self.date}"
 
   class Meta:
     ordering = ['-date']
