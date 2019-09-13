@@ -4,13 +4,9 @@ from datetime import date
 
 # Create your models here.
 PLAYDAYS = (
-  ('S', 'Sunday'),
-  ('M', 'Monday'),
-  ('T', 'Tuesday'),
-  ('W', 'Wednesday'),
-  ('TR', 'Thursday'),
-  ('F', 'Friday'),
-  ('SAT', 'Saturday'),
+  ('M', 'Morning'),
+  ('A', 'Afternoon'),
+  ('B', 'Beer:30'),
 )
 
 class Location(models.Model):
@@ -48,7 +44,7 @@ class Session(models.Model):
   game = models.ForeignKey(Game, on_delete=models.CASCADE)
 
   def __str__(self):
-    return "{self.get_playday_display()} on {self.date}"
+    return "{self.get_session_display()} on {self.date}"
 
   class Meta:
     ordering = ['-date']
