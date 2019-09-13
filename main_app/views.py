@@ -11,7 +11,7 @@ from .models import Game, Location, Photo
 from .forms import SessionForm
 
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
-BUCKET = 'catcollector-jbc'
+BUCKET = 'gamecollector1'
 
 class GameCreate(LoginRequiredMixin, CreateView):
   model = Game
@@ -84,7 +84,7 @@ def assoc_location(request, game_id, location_id):
   return redirect('detail', game_id=game_id)
 
 @login_required
-def add_photo(request, cat_id):
+def add_photo(request, game_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
     s3 = boto3.client('s3')
